@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.epam.training</groupId>
+  <artifactId>first-project</artifactId>
+  <version>5.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>first-project</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <distributionManagement>
+    <snapshotRepository>
+        <id>ecsc00101537.epam.com</id>
+        <name>ecsc00101537.epam.com-snapshots</name>
+        <url>http://ecsc00101537.epam.com:8081/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+  </distributionManagement>
+  
+  <profiles>
+	<profile>
+		<id>english-profile</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+			<property>
+				<name>environment</name>
+				<value>en</value>
+			</property>
+		</activation>
+		<properties>
+			<mainClassToStart>com.epam.training.App</mainClassToStart>
+		</properties>
+	</profile>
+		<profile>
+		<id>hungarian-profile</id>
+		<activation>
+			<property>
+				<name>environment</name>
+				<value>hu</value>
+			</property>
+		</activation>
+		<properties>
+			<mainClassToStart>com.epam.training.AppHu</mainClassToStart>
+		</properties>
+	</profile>
+  </profiles>
+  
+  <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.1</version>
+			<configuration>
+				<debug>false</debug>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<version>2.4</version>
+			<configuration>
+				<archive>
+					<manifest>
+						<mainClass>${mainClassToStart}</mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+		</plugin>
+	</plugins>
+  </build>
+  
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
