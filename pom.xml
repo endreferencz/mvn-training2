@@ -21,6 +21,11 @@
   </scm>
   
   <distributionManagement>
+    <repository>
+        <id>ecsc00101537.epam.com</id>
+        <name>ecsc00101537.epam.com-releases</name>
+        <url>http://ecsc00101537.epam.com:8081/artifactory/libs-release-local</url>
+    </repository>
     <snapshotRepository>
         <id>ecsc00101537.epam.com</id>
         <name>ecsc00101537.epam.com-snapshots</name>
@@ -58,6 +63,18 @@
   
   <build>
 	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-release-plugin</artifactId>
+			<version>2.5.2</version>
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.maven.scm</groupId>
+					<artifactId>maven-scm-provider-gitexe</artifactId>
+					<version>1.9.4</version>
+				</dependency>
+			</dependencies>
+		</plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-compiler-plugin</artifactId>
